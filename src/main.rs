@@ -44,8 +44,9 @@ fn handle_success_connect(mut _stream: TcpStream) {
             let start_line = line_data[0];
             let start_parts: Vec<&str> = start_line.split(" ").collect();
             let path = start_parts[1];
-            if path == "/" {
-                let response = format!("HTTP/1.1 200 OK\r\n\r\n");
+            let paths: Vec<&str> = path.split("/").collect();
+            if paths[1] == "echo" {
+                let response = format!("HTTP/1.1 200 OK\r\n\r\nContent-Type: text/plain\r\nContent-Length: {}\r\n\r\n{} \r\n", paths[2].len(),paths[2]);
                 _stream.write_all(response.as_bytes()).unwrap();
             } else {
                 let response = format!("HTTP/1.1 404 Not Found\r\n\r\n");
