@@ -73,6 +73,7 @@ fn main() {
     println!("logs appear here");
     let listener = TcpListener::bind("127.0.0.1:4221").unwrap();
     for stream in listener.incoming() {
+        // concurrent connections
         thread::spawn(move || match stream {
             Ok(mut stream) => {
                 println!("accepted new connection");
