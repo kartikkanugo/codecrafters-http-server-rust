@@ -40,12 +40,12 @@ fn parse_requests(stream: &mut TcpStream) -> Request {
 
     println!("{:?} {:?}", data, rest);
 
-    let host = match rest.get(3) {
+    let host = match rest.get(0) {
         Some(s) => s,
         None => "",
     };
 
-    let agent = match rest.get(0) {
+    let agent = match rest.get(1) {
         Some(s) => s,
         None => "",
     };
