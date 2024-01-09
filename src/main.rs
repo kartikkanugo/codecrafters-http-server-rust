@@ -116,6 +116,7 @@ fn main() {
     }
 }
 
+// http complete
 fn stream_handler(mut stream: &mut TcpStream) {
     let mut buf_reader = BufReader::new(&mut stream); // here pass the ownership of stream to unknown sized trait as we will not use it again but reference also can be passed
     let buffer = buf_reader.fill_buf().unwrap();
